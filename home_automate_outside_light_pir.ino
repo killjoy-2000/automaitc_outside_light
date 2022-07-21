@@ -54,7 +54,7 @@ void loop() {
 
 
   // main code
-  if(digitalRead(door) == LOW && state ==0 && analogRead(ldr) > 500){
+  if(digitalRead(door) == LOW && state ==0 && analogRead(ldr) > 300){
     digitalWrite(light,HIGH);
     state = 1;
   }
