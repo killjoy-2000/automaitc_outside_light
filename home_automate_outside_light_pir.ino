@@ -50,11 +50,27 @@ void loop() {
   Serial.print(time_org);
 
   Serial.print("\t");
-  Serial.println(analogRead(ldr));
+  Serial.print(analogRead(ldr));
+
+  Serial.print("\t");
+  Serial.print(digitalRead(pir1));
+
+  Serial.print("\t");
+  Serial.println(digitalRead(pir2));
 
 
   // main code
-  if(digitalRead(door) == LOW && state ==0 && analogRead(ldr) > 300){
+  if(digitalRead(pir1) == HIGH && state ==0 && analogRead(ldr) > 200){
+    digitalWrite(light,HIGH);
+    state = 1;
+  }
+
+  if(digitalRead(pir2) == HIGH && state ==0 && analogRead(ldr) > 200){
+    digitalWrite(light,HIGH);
+    state = 1;
+  }
+
+  if(digitalRead(door) == HIGH && state ==0 && analogRead(ldr) > 200){
     digitalWrite(light,HIGH);
     state = 1;
   }
