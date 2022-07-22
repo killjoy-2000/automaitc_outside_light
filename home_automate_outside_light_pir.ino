@@ -14,7 +14,7 @@ unsigned long long prev_time = 0;
 
 
 void setup() {
-  Serial.begin(9600);
+  // Serial.begin(9600);      for debugging uncomment the serial monitor
   
   pinMode(indicator,OUTPUT);
   pinMode(pir1,INPUT);
@@ -30,47 +30,50 @@ void setup() {
 }
 
 void loop() {  
-  Serial.print(analogRead(time_set));
-  Serial.print("\t");
-  Serial.print(digitalRead(door));
+  // Serial.print(analogRead(time_set));
+  // Serial.print("\t");
+  // Serial.print(digitalRead(door));
 
   // time_val = map(analogRead(time_set), 0, 1023, 120, 1200);
 
   time_on = map(analogRead(time_set), 0, 1023, 1800, 120) * 1000;
 
   // Serial.print("\t");
-  // Serial.print(time_val);
+  // Serial.prin/t(time_val);
 
-  Serial.print("\t");
-  Serial.print(time_on);
+  // Serial.print("\t");
+  // Serial.print(time_on);
 
   // view original time 
   time_org = (time_on/1000)/60;
-  Serial.print("\t");
-  Serial.print(time_org);
+  // Serial.print("\t");
+  // Serial.print(time_org);
 
-  Serial.print("\t");
-  Serial.print(analogRead(ldr));
+  // Serial.print("\t");
+  // Serial.print(analogRead(ldr));
 
-  Serial.print("\t");
-  Serial.print(digitalRead(pir1));
+  // Serial.print("\t");
+  // Serial.print(digitalRead(pir1));
 
-  Serial.print("\t");
-  Serial.println(digitalRead(pir2));
+  // Serial.print("\t");
+  // Serial.println(digitalRead(pir2));
 
 
   // main code
-  if(digitalRead(pir1) == HIGH && state ==0 && analogRead(ldr) > 200){
+  // for pir 1
+  if(digitalRead(pir1) == HIGH && state == 0 && analogRead(ldr) > 100){
     digitalWrite(light,HIGH);
     state = 1;
   }
 
-  if(digitalRead(pir2) == HIGH && state ==0 && analogRead(ldr) > 200){
+  // for pir 2
+  if(digitalRead(pir2) == HIGH && state == 0 && analogRead(ldr) > 100){
     digitalWrite(light,HIGH);
     state = 1;
   }
 
-  if(digitalRead(door) == HIGH && state ==0 && analogRead(ldr) > 200){
+  // for door sensor
+  if(digitalRead(door) == HIGH && state == 0 && analogRead(ldr) > 100){
     digitalWrite(light,HIGH);
     state = 1;
   }
